@@ -1,6 +1,7 @@
 #pragma once
 
 #include <atomic>
+#include <vector>
 
 #include "service.h"
 #include "evpp/thread_dispatch_policy.h"

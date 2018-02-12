@@ -7,7 +7,7 @@
 
 
 #include <string> // avoid compiling failed because of 'errno' redefined as 'WSAGetLastError()'
-#define errno WSAGetLastError()
+//#define errno WSAGetLastError()
 #include <windows.h>
 
 #include <ws2tcpip.h>
@@ -15,7 +15,7 @@
 #include <io.h>
 #include <ws2ipdef.h>
 
-typedef int ssize_t;
+//typedef int ssize_t;
 #define iovec _WSABUF
 #define iov_base buf
 #define iov_len  len
@@ -33,7 +33,7 @@ typedef int ssize_t;
 #endif
 #endif
 
-#ifdef H_OS_WINDOWS
+#ifdef H_OS_WINDOWS___ignore
 
 /*
  * Windows Sockets errors redefined as regular Berkeley error constants.
