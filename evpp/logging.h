@@ -2,6 +2,8 @@
 
 #include "evpp/platform_config.h"
 
+#define ENABLE_LOGGING 0
+
 #ifdef __cplusplus
 #define GOOGLE_GLOG_DLL_DECL         
 #define GLOG_NO_ABBREVIATED_SEVERITIES
@@ -34,12 +36,15 @@
 #define LOG_FATAL LOG(FATAL)
 
 #else
-#define LOG_TRACE if(false) std::cout << __FILE__ << ":" << __LINE__ << " "
-#define LOG_DEBUG if(false) std::cout << __FILE__ << ":" << __LINE__ << " "
-#define LOG_INFO  if(false) std::cout << __FILE__ << ":" << __LINE__ << " "
-#define LOG_WARN  if(false) std::cout << __FILE__ << ":" << __LINE__ << " "
-#define LOG_ERROR if(false) std::cout << __FILE__ << ":" << __LINE__ << " "
-#define LOG_FATAL if(false) std::cout << __FILE__ << ":" << __LINE__ << " "
+
+#define WARNING 1
+#define LOG_EVERY_N(...)  if(ENABLE_LOGGING) std::cout
+#define LOG_TRACE if(ENABLE_LOGGING) std::cout << std::endl  << __FILE__ << ":" << __LINE__ << " "
+#define LOG_DEBUG if(ENABLE_LOGGING) std::cout << std::endl<< __FILE__ << ":" << __LINE__ << " "
+#define LOG_INFO  if(ENABLE_LOGGING) std::cout << std::endl<< __FILE__ << ":" << __LINE__ << " "
+#define LOG_WARN  if(ENABLE_LOGGING) std::cout << std::endl<< __FILE__ << ":" << __LINE__ << " "
+#define LOG_ERROR if(ENABLE_LOGGING) std::cout << std::endl<< __FILE__ << ":" << __LINE__ << " "
+#define LOG_FATAL if(ENABLE_LOGGING) std::cout << std::endl<< __FILE__ << ":" << __LINE__ << " "
 #define CHECK_NOTnullptr(val) LOG_ERROR << "'" #val "' Must be non nullptr";
 #endif
 #endif // end of define __cplusplus
@@ -51,6 +56,6 @@
 //#define assert(expr)  { if (!(expr)) { LOG_FATAL << #expr ;} }
 //#endif
 
-#define LOG(...)
-#define DLOG_TRACE if(false) LOG_TRACE
-#define DLOG_WARN if(false) LOG_TRACE
+#define LOG(...) if(ENABLE_LOGGING) std::cout
+#define DLOG_TRACE if(ENABLE_LOGGING) LOG_TRACE
+#define DLOG_WARN if(ENABLE_LOGGING) LOG_TRACE

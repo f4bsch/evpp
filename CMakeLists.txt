@@ -27,13 +27,13 @@ if (UNIX)
          -std=c++11
     )
     include_directories (${PROJECT_SOURCE_DIR}
-                         ${PROJECT_SOURCE_DIR}/3rdparty ../libevent/include)
+                         ${PROJECT_SOURCE_DIR}/3rdparty)
 else (UNIX)
 set (CXX_FLAGS -DWIN32 -D_WIN32)
     set(VcpkgRoot ${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET})
     include_directories(${VcpkgRoot}/include
                         ${PROJECT_SOURCE_DIR}
-                        ${PROJECT_SOURCE_DIR}/3rdparty/wininclude  ../libevent/include)
+                        ${PROJECT_SOURCE_DIR}/3rdparty/wininclude)
 
     # On windows, Debug mode
     link_directories(${VcpkgRoot}/debug/lib ${VcpkgRoot}/debug/lib/manual-link)
@@ -47,7 +47,7 @@ string (REPLACE ";" " " CMAKE_CXX_FLAGS "${CXX_FLAGS}")
 if (UNIX)
     SET(CMAKE_CXX_FLAGS_DEBUG   "-O0 -g -ggdb -D_DEBUG -DGOOGLE_STRIP_LOG=0")
     SET(CMAKE_CXX_FLAGS_RELEASE "-O3 -g -ggdb -DNDEBUG -DGOOGLE_STRIP_LOG=1")
-    SET(DEPENDENT_LIBRARIES event_static pthread)
+    SET(DEPENDENT_LIBRARIES event pthread)
 else (UNIX)
     SET(DEPENDENT_LIBRARIES event_static)
 endif (UNIX)
@@ -85,7 +85,7 @@ message (STATUS "THRIFT_INCLUDE_DIR " ${THRIFT_INCLUDE_DIR})
 message (STATUS "THRIFT_LIBRARY " ${THRIFT_LIBRARY})
 
 add_subdirectory (evpp)
-add_subdirectory (apps)
+#add_subdirectory (apps)
 add_subdirectory (labs)
 
 if (NOT EVPP_VCPKG_BUILD)
