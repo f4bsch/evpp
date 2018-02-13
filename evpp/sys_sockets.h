@@ -15,7 +15,9 @@
 #include <io.h>
 #include <ws2ipdef.h>
 
-//typedef int ssize_t;
+#ifdef _MSC_VER
+typedef int ssize_t;
+#endif
 #define iovec _WSABUF
 #define iov_base buf
 #define iov_len  len
