@@ -62,6 +62,13 @@ if (UNIX)
       ARCHIVE DESTINATION lib)
 
 else (UNIX)
+    add_library(evpp SHARED ${evpp_SRCS})
+    target_link_libraries(evpp ${DEPENDENT_LIBRARIES})
+
+    if(WIN32)
+        target_link_libraries(evpp ws2_32)
+    endif()
+
     install (
       TARGETS evpp_static evpp_lite_static
       EXPORT ${PACKAGE_NAME}
