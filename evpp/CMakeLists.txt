@@ -61,7 +61,7 @@ if (UNIX)
       LIBRARY DESTINATION lib
       ARCHIVE DESTINATION lib)
 
-else (UNIX)
+elseif (MINGW)
     add_library(evpp SHARED ${evpp_SRCS})
     target_link_libraries(evpp ${DEPENDENT_LIBRARIES})
 

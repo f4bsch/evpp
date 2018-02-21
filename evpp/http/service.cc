@@ -36,6 +36,14 @@ Service::Service(EventLoop* l)
         return;
     }
 
+    evhttp_set_allowed_methods(evhttp_,
+                               EVHTTP_REQ_GET |
+                               EVHTTP_REQ_POST |
+                               EVHTTP_REQ_HEAD |
+                               EVHTTP_REQ_PUT |
+                               EVHTTP_REQ_DELETE |
+                               EVHTTP_REQ_OPTIONS);
+
     std::once_flag flag;
     std::call_once(flag, &InitHTTPCodeString);
 }
