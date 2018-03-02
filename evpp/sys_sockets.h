@@ -7,7 +7,8 @@
 
 
 #include <string> // avoid compiling failed because of 'errno' redefined as 'WSAGetLastError()'
-//#define errno WSAGetLastError()
+#undef errno
+#define errno WSAGetLastError()
 #include <windows.h>
 
 #include <ws2tcpip.h>
