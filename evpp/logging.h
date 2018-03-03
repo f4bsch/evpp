@@ -56,6 +56,8 @@
 //#define assert(expr)  { if (!(expr)) { LOG_FATAL << #expr ;} }
 //#endif
 
+#ifndef LOG
 #define LOG(...) if(ENABLE_LOGGING) std::cout
+#endif
 #define DLOG_TRACE if(ENABLE_LOGGING) LOG_TRACE
 #define DLOG_WARN if(ENABLE_LOGGING) LOG_TRACE
