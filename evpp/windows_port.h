@@ -8,7 +8,7 @@
 
 
 //! Define Operation System.
-#if ( defined(WIN32) || defined(WIN64) )
+#ifdef _WIN32
 #   ifndef H_OS_WINDOWS
 #       define H_OS_WINDOWS
 #   endif
